@@ -1,0 +1,25 @@
+{
+  "$schema": "https://homemade.dev/schemas/latest/config.json",
+  "warmup": [
+    "npx --yes pnpm@8.15.9 install --frozen-lockfile"
+  ],
+  "install": [
+    "npx --yes pnpm@8.15.9 install --frozen-lockfile"
+  ],
+  "services": {
+    "web": {
+      "cmd": "exec ./node_modules/.bin/next dev --hostname 0.0.0.0 --port \"$PORT\"",
+      "port": 3000,
+      "url": true,
+      "healthcheck": {
+        "path": "/"
+      },
+      "displayName": "Next.js"
+    }
+  },
+  "env_schema": [
+    "NEXT_PUBLIC_COOLIFY_API_URL",
+    "NEXT_PUBLIC_COOLIFY_API_VERSION",
+    "COOLIFY_API_SECRET"
+  ]
+}
